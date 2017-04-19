@@ -8,6 +8,6 @@
 #include "core.h"
 
 __attribute__ ((naked)) void SysTick_Handler(void){
-	asm("NOP");
+	__asm("NOP");
 	muOS_dispatcher();
 }
