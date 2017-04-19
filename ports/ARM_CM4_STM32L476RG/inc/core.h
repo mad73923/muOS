@@ -17,8 +17,9 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t muOS_criticalSection
 }
 
 __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_criticalSection_leave(uint32_t status){
-	if(!status)
+	if(!status){
 		__enable_irq();
+	}
 }
 
 __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
