@@ -9,7 +9,7 @@
 #define MUOS_INC_MUOS_H_
 
 #include "hardware.h"
-
+#include "core.h"
 
 
 #endif /* MUOS_INC_MUOS_H_ */
