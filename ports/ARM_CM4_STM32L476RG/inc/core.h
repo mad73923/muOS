@@ -22,8 +22,9 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_criticalSection_lea
 	}
 }
 
+//volatile uint32_t currentTask = 0;
+
 __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
-	uint32_t irq_status = muOS_criticalSection_enter();
 	__asm(
 			"push {r0}\n"
 			"push {r1}\n"
@@ -38,9 +39,35 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 			"push {r10}\n"
 			"push {r11}\n"
 			"push {r12}\n"
+
+			"push {LR}\n"
+
+			"mrs  r0, xPSR\n"
+			"push {r0}\n"
+			"mrs  r0, PRIMASK\n"
+			"push {r0}\n"
+			"mrs  r0, FAULTMASK\n"
+			"push {r0}\n"
+			"mrs  r0, BASEPRI\n"
+			"push {r0}\n"
+			"mrs  r0, CONTROL\n"
+			"push {r0}\n"
 			);
 
 	__asm(
+			"pop {r0}\n"
+			"msr  CONTROL, r0\n"
+			"pop {r0}\n"
+			"msr  BASEPRI, r0\n"
+			"pop {r0}\n"
+			"msr  FAULTMASK, r0\n"
+			"pop {r0}\n"
+			"msr  PRIMASK, r0\n"
+			"pop {r0}\n"
+			"msr  xPSR, r0\n"
+
+			"pop {LR}\n"
+
 			"pop {r12}\n"
 			"pop {r11}\n"
 			"pop {r10}\n"
@@ -55,8 +82,8 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 			"pop {r1}\n"
 			"pop {r0}\n"
 			);
-	muOS_criticalSection_leave(irq_status);
-
+	__enable_irq();
+	__asm("BX LR");
 }
 
 #endif /* PORTS_ARM_CM4_STM32L476RG_INC_CORE_H_ */
