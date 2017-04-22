@@ -36,30 +36,12 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 			"push {r9}\n"
 			"push {r10}\n"
 			"push {r11}\n"
-
-			//"mrs  r0, PRIMASK\n"
-			//"push {r0}\n"
-			//"mrs  r0, FAULTMASK\n"
-			//"push {r0}\n"
-			//"mrs  r0, BASEPRI\n"
-			//"push {r0}\n"
-			//"mrs  r0, CONTROL\n"
-			//"push {r0}\n"
 			);
 
 	__asm("str sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
 	currentTask = (currentTask+1)%2;
 	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
 	__asm(
-			//"pop {r0}\n"
-			//"msr  CONTROL, r0\n"
-			//"pop {r0}\n"
-			//"msr  BASEPRI, r0\n"
-			//"pop {r0}\n"
-			//"msr  FAULTMASK, r0\n"
-			//"pop {r0}\n"
-			//"msr  PRIMASK, r0\n"
-
 			"pop {r11}\n"
 			"pop {r10}\n"
 			"pop {r9}\n"

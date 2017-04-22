@@ -27,6 +27,10 @@ int main(void){
 	tcb[0].stackBegin = stack1;
 	tcb[0].stackSize = 20;
 	//tcb[0].state = READY;
+	//canary
+	tcb[0].stackBegin[0] = 0xAAAAAAAA;
+	tcb[0].stackBegin[tcb[0].stackSize-1] = 0xAAAAAAAA;
+
 	tcb[0].stackPointer = tcb[0].stackBegin + (tcb[0].stackSize-1);
 
 	tcb[1].id = 1;
