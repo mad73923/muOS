@@ -7,8 +7,8 @@
 
 #include "muOS.h"
 
-volatile uint32_t stack1[256];
-volatile uint32_t stack2[256];
+volatile uint32_t stack1[25];
+volatile uint32_t stack2[25];
 
 taskControlBlock tcb[2];
 
@@ -19,7 +19,6 @@ void task2(void);
 
 int main(void){
 	muOS_hardware_setup();
-	//muOS_hardware_int_systick_enable();
 
 	currentTask = 0;
 
@@ -31,7 +30,6 @@ int main(void){
 	SysTick->VAL   = 0UL;
 	muOS_hardware_int_systick_enable();
 	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
-	//__asm("ldr lr, [%0]" :: "r" (task1));
 	__asm("pop {pc}");
 
 	while(1);
