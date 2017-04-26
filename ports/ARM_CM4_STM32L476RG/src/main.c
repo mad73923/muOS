@@ -29,7 +29,7 @@ int main(void){
 	tcb[0].stackPointer = tcb[0].stackBegin + (tcb[0].stackSize-1);
 
 	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
-	__asm("bl task1");
+	__asm("b task1");
 
 	while(1);
 }
