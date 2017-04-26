@@ -28,6 +28,8 @@ int main(void){
 
 	tcb[0].stackPointer = tcb[0].stackBegin + (tcb[0].stackSize-1-1);
 	tcb[0].stackBegin[tcb[0].stackSize-1-1] = task1;
+	SysTick->VAL   = 0UL;
+	muOS_hardware_int_systick_enable();
 	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
 	//__asm("ldr lr, [%0]" :: "r" (task1));
 	__asm("pop {pc}");
@@ -36,7 +38,6 @@ int main(void){
 }
 
 void task1(void){
-	muOS_hardware_int_systick_enable();
 	while(1){
 		__asm("NOP");
 	}
