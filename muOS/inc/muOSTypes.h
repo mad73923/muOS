@@ -8,6 +8,8 @@
 #ifndef MUOS_INC_MUOSTYPES_H_
 #define MUOS_INC_MUOSTYPES_H_
 
+#include <stdint.h>
+
 // Task control block
 typedef enum {READY, RUNNING, WAITING, KILLED} taskstate;
 

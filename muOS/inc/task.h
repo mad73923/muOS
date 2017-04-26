@@ -1,0 +1,17 @@
+/*
+ * task.h
+ *
+ *  Created on: 26.04.2017
+ *      Author: matthias
+ */
+
+#ifndef MUOS_INC_TASK_H_
+#define MUOS_INC_TASK_H_
+
+#include "muOSTypes.h"
+#include <stdint.h>
+
+void muOS_task_init(taskControlBlock* tcb, void* taskFunction, uint32_t* stackBegin, uint32_t stackSize);
+
+
+#endif /* MUOS_INC_TASK_H_ */

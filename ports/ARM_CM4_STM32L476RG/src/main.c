@@ -23,33 +23,10 @@ int main(void){
 
 	currentTask = 0;
 
-	tcb[0].id = 0;
-	tcb[0].stackBegin = stack1;
-	tcb[0].stackSize = 25;
-	//tcb[0].state = READY;
-	//canary
-	tcb[0].stackBegin[0] = 0xAAAAAAAA;
-	tcb[0].stackBegin[tcb[0].stackSize-1] = 0xAAAAAAAA;
+	muOS_task_init(&tcb[0], task1, stack1, 25);
+	muOS_task_init(&tcb[1], task2, stack2, 25);
 
 	tcb[0].stackPointer = tcb[0].stackBegin + (tcb[0].stackSize-1);
-
-	tcb[1].id = 1;
-	tcb[1].stackBegin = stack2;
-	tcb[1].stackSize = 25;
-	//tcb[1].state = READY;
-	//canary
-	tcb[1].stackBegin[0] = 0xAAAAAAAA;
-	tcb[1].stackBegin[tcb[1].stackSize-1] = 0xAAAAAAAA;
-
-	tcb[1].stackPointer = tcb[1].stackBegin + (tcb[1].stackSize - numberOfRegisters-1-1);
-	//R7
-	tcb[1].stackBegin[tcb[1].stackSize-1-12-1] = &tcb[1].stackBegin[tcb[1].stackSize-1];
-	//PSR
-	tcb[1].stackBegin[tcb[1].stackSize-1-1-1] = 0x1000200;
-	//PC
-	tcb[1].stackBegin[tcb[1].stackSize-1-2-1] = task2;
-	//LR
-	tcb[1].stackBegin[tcb[1].stackSize-1-3-1] = -7;
 
 	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
 	__asm("bl task1");
