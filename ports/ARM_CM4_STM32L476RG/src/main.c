@@ -26,10 +26,11 @@ int main(void){
 	muOS_task_init(&tcb[0], task1, stack1, 25);
 	muOS_task_init(&tcb[1], task2, stack2, 25);
 
-	tcb[0].stackPointer = tcb[0].stackBegin + (tcb[0].stackSize-1);
-
+	tcb[0].stackPointer = tcb[0].stackBegin + (tcb[0].stackSize-1-1);
+	tcb[0].stackBegin[tcb[0].stackSize-1-1] = task1;
 	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
-	__asm("b task1");
+	//__asm("ldr lr, [%0]" :: "r" (task1));
+	__asm("pop {pc}");
 
 	while(1);
 }
