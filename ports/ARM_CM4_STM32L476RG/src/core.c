@@ -9,7 +9,13 @@
 
 const uint32_t task_numberOfRegisters = 16;
 
+uint32_t status;
+
 __attribute__ ((naked)) void SysTick_Handler(void){
+	status = SysTick->CTRL;
+	if(status & SysTick_CTRL_COUNTFLAG_Msk){
+		__asm("NOP");
+	}
 	__asm("NOP");
 	muOS_dispatcher();
 }
