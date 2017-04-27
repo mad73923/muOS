@@ -55,4 +55,6 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 	__asm("BX LR");
 }
 
+void muOS_core_stack_init(taskControlBlock* tcb);
+
 #endif /* PORTS_ARM_CM4_STM32L476RG_INC_CORE_H_ */
