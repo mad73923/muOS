@@ -30,3 +30,13 @@ void muOS_core_stack_init(taskControlBlock* tcb){
 	// set LR
 	tcb->stackBegin[tcb->stackSize-5] = -7;
 }
+
+void muOS_start(taskControlBlock* startTask){
+	currentTask = startTask->id;
+	startTask->stackPointer = startTask->stackBegin + (startTask->stackSize-1-1);
+	startTask->stackBegin[startTask->stackSize-1-1] = startTask->taskFunction;
+	muOS_hardware_systick_reset();
+	muOS_hardware_systick_int_enable();
+	__asm("ldr sp, [%0]" :: "r" (&startTask->stackPointer));
+	__asm("pop {pc}");
+}

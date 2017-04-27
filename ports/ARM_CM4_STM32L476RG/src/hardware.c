@@ -67,6 +67,10 @@ void muOS_hardware_setup(void){
 	LL_SetSystemCoreClock(80000000);
 }
 
-void muOS_hardware_int_systick_enable(void){
+void muOS_hardware_systick_int_enable(void){
 	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;
+}
+
+void muOS_hardware_systick_reset(void){
+	SysTick->VAL   = 0UL;
 }

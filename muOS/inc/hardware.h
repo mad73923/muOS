@@ -13,6 +13,7 @@
  * It should set up the hardware (System clock, Flash Latency, etc)
  */
 void muOS_hardware_setup(void);
-void muOS_hardware_int_systick_enable(void);
+void muOS_hardware_systick_int_enable(void);
+void muOS_hardware_systick_reset(void);
 
 #endif /* MUOS_INC_HARDWARE_H_ */
