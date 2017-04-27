@@ -26,3 +26,19 @@ void muOS_task_init(taskControlBlock* tcb, void* taskFunction, uint32_t* stackBe
 
 	muOS_core_stack_init(tcb);
 }
+
+void muOS_task_yield(void){
+	SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+	__asm("NOP");
+}

@@ -14,6 +14,8 @@ taskControlBlock tcb[2];
 
 const int numberOfRegisters = 16;
 
+uint64_t cntT1, cntT2;
+
 void task1(void);
 void task2(void);
 
@@ -30,12 +32,14 @@ int main(void){
 
 void task1(void){
 	while(1){
-		__asm("NOP");
+		muOS_task_yield();
+		cntT1++;
 	}
 }
 
 void task2(void){
 	while(1){
 		__asm("NOP");
+		cntT2++;
 	}
 }
