@@ -31,7 +31,8 @@ int run(void)
 
 	//taskControlBlock* startTask;
 	//linkedList_get(&allTasksList, 0, &startTask);
-	initMemoryManagementTest();
+	//initMemoryManagementTest();
+	initLinkedListTest();
 	muOS_start(&tcb[0]);
 
     while(1)

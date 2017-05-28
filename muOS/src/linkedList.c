@@ -115,13 +115,11 @@ void linkedList_removeAll(LinkedList *linkedList){
 }
 
 uint8_t linkedList_first(LinkedList *linkedList, void **item){
-	linkedList_get(linkedList, 0, item);
-	return 1;
+	return linkedList_get(linkedList, 0, item);
 }
 
 uint8_t linkedList_last(LinkedList *linkedList, void **item){
-	linkedList_get(linkedList, linkedList->length - 1, item);
-	return 1;
+	return linkedList_get(linkedList, linkedList->length - 1, item);
 }
 
 uint8_t linkedList_get(LinkedList *linkedList, uint8_t index, void **item){

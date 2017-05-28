@@ -18,4 +18,7 @@ extern uint32_t stack2[stacksize];
 void initMemoryManagementTest();
 void memoryManagementTestTask();
 
+void initLinkedListTest();
+void linkedListTestTask();
+
 #endif /* TEST_INC_TESTTASKS_H_ */
