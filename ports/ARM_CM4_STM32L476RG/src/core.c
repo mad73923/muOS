@@ -43,3 +43,7 @@ void muOS_start(taskControlBlock* startTask){
 	__asm("ldr sp, [%0]" :: "r" (&startTask->stackPointer));
 	__asm("pop {pc}");
 }
+
+void muOS_core_dispatcher_trigger(void){
+	SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
+}
