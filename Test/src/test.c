@@ -14,10 +14,15 @@ uint32_t stack2[250];
 
 taskControlBlock tcb[2];
 
+void (*initNextTest)(void) __attribute__ ((section (".noinit"))) = &initMemoryManagementTest;
+
+
 int run(void)
 {
-//	initNextTest = &initLinkedListTest;
-	//initNextTest();
+	if(hardRestart){
+		initNextTest = &initMemoryManagementTest;
+	}
+	initNextTest();
 
 /*
 #ifdef RebootTest
@@ -31,8 +36,7 @@ int run(void)
 
 	//taskControlBlock* startTask;
 	//linkedList_get(&allTasksList, 0, &startTask);
-	//initMemoryManagementTest();
-	initLinkedListTest();
+
 	muOS_start(&tcb[0]);
 
     while(1)

@@ -10,9 +10,11 @@
 #include "../inc/testTasks.h"
 #include "../../muOS/inc/task.h"
 #include "../../muOS/inc/exceptions.h"
+#include "core.h"
 
 void initMemoryManagementTest(){
 	muOS_task_init(&tcb[0], memoryManagementTestTask, stack1, stacksize, 0);
+	initNextTest = &initLinkedListTest;
 }
 
 void alloc5_free_alloc5(){
@@ -85,6 +87,5 @@ void memoryManagementTestTask(){
 	memcopyTest();
 	memoryManagement_wipe();
 
-	//beerOS_reboot();
-	while(1);
+	muOS_core_reboot();
 }

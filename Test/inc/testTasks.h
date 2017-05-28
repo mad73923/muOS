@@ -12,6 +12,8 @@
 
 #define stacksize 250
 
+extern void (*initNextTest)(void);
+
 extern uint32_t stack1[stacksize];
 extern uint32_t stack2[stacksize];
 

@@ -14,6 +14,7 @@
 
 volatile uint32_t currentTask;
 extern taskControlBlock tcb[2];
+extern volatile uint8_t hardRestart;
 
 __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t muOS_criticalSection_enter(void){
 	uint32_t status = __get_PRIMASK();

@@ -9,10 +9,9 @@
 
 const uint32_t task_numberOfRegisters = 16;
 
-uint32_t status;
+volatile uint8_t hardRestart = 1;
 
 __attribute__ ((naked)) void SysTick_Handler(void){
-	status = SysTick->CTRL;
 	__asm("NOP");
 	muOS_dispatcher();
 }
@@ -46,4 +45,10 @@ void muOS_start(taskControlBlock* startTask){
 
 void muOS_core_dispatcher_trigger(void){
 	SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
+}
+
+void muOS_core_reboot(void){
+	hardRestart = 0;
+	muOS_criticalSection_enter();
+	NVIC_SystemReset();
 }
