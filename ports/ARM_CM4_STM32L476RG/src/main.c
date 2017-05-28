@@ -19,7 +19,7 @@ volatile uint64_t cntT1, cntT2;
 void task1(void);
 void task2(void);
 
-int main(void){
+int run(void){
 	muOS_hardware_setup();
 
 	muOS_task_init(&tcb[0], task1, stack1, 25);

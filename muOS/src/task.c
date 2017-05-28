@@ -11,7 +11,7 @@ uint32_t task_totalNumber = 0;
 
 const uint32_t task_canaryValue = 0xAAAAAAAA;
 
-void muOS_task_init(taskControlBlock* tcb, void* taskFunction, uint32_t* stackBegin, uint32_t stackSize){
+void muOS_task_init(taskControlBlock* tcb, void* taskFunction, uint32_t* stackBegin, uint32_t stackSize, uint32_t prio){
 	tcb->id = task_totalNumber;
 	task_totalNumber++;
 
@@ -19,6 +19,7 @@ void muOS_task_init(taskControlBlock* tcb, void* taskFunction, uint32_t* stackBe
 	tcb->stackBegin = stackBegin;
 	tcb->stackSize = stackSize;
 	tcb->taskFunction = taskFunction;
+	tcb->prio = prio;
 
 	// set canary values
 	tcb->stackBegin[0] = task_canaryValue;

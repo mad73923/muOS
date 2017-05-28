@@ -25,6 +25,6 @@ typedef volatile struct strucTCB{
 	volatile void* taskFunction;
 }taskControlBlock;
 
-
+#define NULL 0
 
 #endif /* MUOS_INC_MUOSTYPES_H_ */

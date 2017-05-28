@@ -10,6 +10,10 @@
 
 #include "stm32l4xx.h"
 #include "muOSTypes.h"
+#include "hardware.h"
+
+volatile uint32_t currentTask;
+extern taskControlBlock tcb[2];
 
 __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t muOS_criticalSection_enter(void){
 	uint32_t status = __get_PRIMASK();
@@ -22,9 +26,6 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_criticalSection_lea
 		__enable_irq();
 	}
 }
-
-volatile uint32_t currentTask;
-extern taskControlBlock tcb[2];
 
 __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 	__asm(
