@@ -51,7 +51,7 @@ void fittingGap(){
 
 void outOfMemory(){
 	Segment* seg1 = (Segment*) alloc(800);
-	Segment* seg2 = (Segment*) alloc(1000);
+	Segment* seg2 = (Segment*) alloc(10000);
 	if(seg2 != NULL){
 		kernelPanic();
 	}
