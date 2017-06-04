@@ -9,7 +9,7 @@
 
 const uint32_t task_numberOfRegisters = 16;
 
-volatile uint8_t hardRestart = 1;
+volatile uint8_t hardRestart __attribute__ ((section (".noinit")));
 
 __attribute__ ((naked)) void SysTick_Handler(void){
 	__asm("NOP");

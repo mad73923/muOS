@@ -20,6 +20,7 @@ void (*initNextTest)(void) __attribute__ ((section (".noinit"))) = &initMemoryMa
 int run(void)
 {
 	if(hardRestart){
+		hardRestart = 0;
 		initNextTest = &initMemoryManagementTest;
 	}
 	initNextTest();
