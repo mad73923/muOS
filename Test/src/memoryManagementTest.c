@@ -13,7 +13,7 @@
 #include "core.h"
 
 void initMemoryManagementTest(){
-	muOS_task_init(&tcb[0], memoryManagementTestTask, stack1, stacksize, 0);
+	muOS_task_init(memoryManagementTestTask, stack1, stacksize, 0);
 	initNextTest = &initLinkedListTest;
 }
 

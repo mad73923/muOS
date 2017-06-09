@@ -9,10 +9,8 @@
 
 void (*initNextTest)(void);
 
-uint32_t stack1[250];
-uint32_t stack2[250];
-
-taskControlBlock tcb[2];
+uint32_t stack1[stacksize];
+uint32_t stack2[stacksize];
 
 void (*initNextTest)(void) __attribute__ ((section (".noinit"))) = &initMemoryManagementTest;
 

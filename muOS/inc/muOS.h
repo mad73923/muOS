@@ -12,6 +12,7 @@
 #include "core.h"
 #include "muOSTypes.h"
 #include "task.h"
+#include "idleTask.h"
 
 // Dispatcher variables
 volatile uint32_t isHardwareTriggered = 1;

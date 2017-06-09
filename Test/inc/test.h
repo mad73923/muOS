@@ -14,5 +14,9 @@
 #include "core.h"
 #include "exceptions.h"
 
+#include "task.h"
+
+extern taskControlBlock tcb[TASK_MAX_NUMBER];
+
 
 #endif /* TEST_INC_TEST_H_ */

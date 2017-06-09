@@ -12,8 +12,13 @@
 #include <stdint.h>
 #include "stm32l4xx.h"
 #include "core.h"
+#include "linkedList.h"
 
-void muOS_task_init(taskControlBlock* tcb, void* taskFunction, uint32_t* stackBegin, uint32_t stackSize, uint32_t prio);
+#define TASK_MAX_PRIO 19
+#define TASK_MAX_NUMBER 30
+
+void muOS_task_initStructs(void);
+void muOS_task_init(void* taskFunction, uint32_t* stackBegin, uint32_t stackSize, uint32_t prio);
 void muOS_task_yield(void);
 
 

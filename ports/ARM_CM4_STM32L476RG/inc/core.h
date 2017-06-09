@@ -11,10 +11,10 @@
 #include "stm32l4xx.h"
 #include "muOSTypes.h"
 #include "hardware.h"
+#include "scheduler.h"
 
-volatile uint32_t currentTask;
-extern taskControlBlock tcb[2];
 extern volatile uint8_t hardRestart;
+extern taskControlBlock* currentTask;
 
 __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t muOS_criticalSection_enter(void){
 	uint32_t status = __get_PRIMASK();
@@ -40,9 +40,11 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 			"push {r11}\n"
 			);
 
-	__asm("str sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
-	currentTask = (currentTask+1)%2;
-	__asm("ldr sp, [%0]" :: "r" (&tcb[currentTask].stackPointer));
+	__asm("str sp, [%0]" :: "r" (&currentTask->stackPointer));
+
+	//scheduler_NextTask();
+
+	__asm("ldr sp, [%0]" :: "r" (&currentTask->stackPointer));
 	__asm(
 			"pop {r11}\n"
 			"pop {r10}\n"

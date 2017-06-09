@@ -23,5 +23,4 @@
 #include "linkedList.h"
 #include "hardware.h"
 
-
 #endif /* MUOS_INIT_H_ */

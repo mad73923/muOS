@@ -34,7 +34,7 @@ void muOS_core_stack_init(taskControlBlock* tcb){
 }
 
 void muOS_start(taskControlBlock* startTask){
-	currentTask = startTask->id;
+	currentTask = startTask;
 	startTask->stackPointer = startTask->stackBegin + (startTask->stackSize-1-1);
 	startTask->stackBegin[startTask->stackSize-1-1] = startTask->taskFunction;
 	muOS_hardware_systick_reset();

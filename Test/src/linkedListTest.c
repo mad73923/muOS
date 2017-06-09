@@ -12,7 +12,7 @@ static int testValues[6] = {1, 2, 3, 4, 5, 6};
 static LinkedList linkedList;
 
 void initLinkedListTest(){
-	muOS_task_init(&tcb[0], linkedListTestTask, stack1, stacksize, 0);
+	muOS_task_init(linkedListTestTask, stack1, stacksize, 0);
 	//initNextTest = &initQueueTest;
 }
 
