@@ -13,7 +13,7 @@ uint32_t stack1[stacksize];
 uint32_t stack2[stacksize];
 
 void (*initNextTest)(void) __attribute__ ((section (".noinit"))) = &initMemoryManagementTest;
-
+void (*scheduler_init)(void) = &scheduler_initSimpleRR;
 
 int run(void)
 {
@@ -22,13 +22,6 @@ int run(void)
 		initNextTest = &initMemoryManagementTest;
 	}
 	initNextTest();
-
-/*
-#ifdef RebootTest
-	initTask(1, task1Stack, rebootTestTask, stacksize);
-#endif
-*/
-
 
 	//initIdleTask();
 	//initHardware();

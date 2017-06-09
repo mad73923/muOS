@@ -15,6 +15,7 @@
 #include "exceptions.h"
 
 #include "task.h"
+#include "scheduler.h"
 
 extern taskControlBlock tcb[TASK_MAX_NUMBER];
 
