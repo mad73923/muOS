@@ -12,9 +12,6 @@
 #include "linkedList.h"
 #include "linkedListTypes.h"
 
-void (*scheduler_NextTask)(void);
-void (*scheduler_enqueueTask)(taskControlBlock* task);
-void (*scheduler_blockedByRessourceRequest)(LinkedList* ressource);
-void (*scheduler_ressourceReleased)(LinkedList* ressource);
+void scheduler_callNextTask(void);
 
 #endif /* MUOS_INC_SCHEDULER_H_ */
