@@ -55,3 +55,22 @@ void muOS_task_init(void* taskFunction, uint32_t* stackBegin, uint32_t stackSize
 void muOS_task_yield(void){
 	muOS_core_dispatcher_trigger();
 }
+
+void muOS_task_wakeupLinkedTasks(LinkedList* syncObj){
+	taskControlBlock* task;
+	uint32_t length = linkedList_length(syncObj);
+	if(length){
+		while(linkedList_iter(syncObj, &task)){
+			task->state = READY;
+			scheduler_enqueueTask(task);
+		}
+		for(int i = 0; i < length; i++){
+			linkedList_remove(syncObj, 0);
+		}
+	}
+}
+
+void muOS_task_queueWaitingTask(LinkedList* syncObj, taskControlBlock* newTask){
+	linkedList_append(syncObj, newTask);
+	newTask->state = WAITING;
+}

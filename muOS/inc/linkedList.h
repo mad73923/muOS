@@ -37,7 +37,7 @@ uint8_t linkedList_last(LinkedList *linkedList, void **item);
 uint8_t linkedList_get(LinkedList *linkedList, uint8_t index, void **item);
 uint8_t linkedList_iter(LinkedList *linkedList, void **item);
 
-uint8_t linkedList_length(LinkedList *linkedList);
+uint32_t linkedList_length(LinkedList *linkedList);
 uint8_t linkedList_contains(LinkedList *linkedList, void *item);
 
 

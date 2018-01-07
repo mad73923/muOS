@@ -126,7 +126,7 @@ uint8_t linkedList_get(LinkedList *linkedList, uint8_t index, void **item){
 	return getInternal(linkedList, index + 1, item);
 }
 
-uint8_t linkedList_length(LinkedList *linkedList){
+uint32_t linkedList_length(LinkedList *linkedList){
 	return linkedList->length;
 }
 

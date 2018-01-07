@@ -13,7 +13,7 @@ static LinkedList linkedList;
 
 void initLinkedListTest(){
 	muOS_task_init(linkedListTestTask, stack1, stacksize, 0);
-	//initNextTest = &initQueueTest;
+	initNextTest = &initSemaphoreTest;
 }
 
 void linkedListTestTask(){
@@ -141,6 +141,5 @@ void linkedListTestTask(){
 		kernelPanic();
 	}
 
-	//beerOS_reboot();
-	while(1);
+	muOS_core_reboot();
 }

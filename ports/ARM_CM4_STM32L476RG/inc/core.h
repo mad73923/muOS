@@ -42,7 +42,7 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE void muOS_dispatcher(void){
 
 	__asm("str sp, [%0]" :: "r" (&currentTask->stackPointer));
 
-	scheduler_callNextTask();
+	simpleRR_nextTask();
 
 	__asm("ldr sp, [%0]" :: "r" (&currentTask->stackPointer));
 	__asm(

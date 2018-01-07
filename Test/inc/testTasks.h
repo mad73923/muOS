@@ -16,11 +16,15 @@ extern void (*initNextTest)(void);
 
 extern uint32_t stack1[stacksize];
 extern uint32_t stack2[stacksize];
+extern uint32_t stack3[stacksize];
 
 void initMemoryManagementTest();
 void memoryManagementTestTask();
 
 void initLinkedListTest();
 void linkedListTestTask();
+
+void initSemaphoreTest();
+void semaphoreTestTask();
 
 #endif /* TEST_INC_TESTTASKS_H_ */

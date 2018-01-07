@@ -12,8 +12,8 @@
 typedef struct {
 	struct ListItem *list;
 	struct ListItem *current;
-	uint8_t length;
-	uint8_t currentIndex;
+	uint32_t length;
+	uint32_t currentIndex;
 	uint8_t isIterating;
 }LinkedList;
 
